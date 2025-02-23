@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        *{margin: 0; box-sizing: border-box;}
+        body{font-family: 'system-ui', sans-serif; background-color: #1c2932; display: flex; justify-content: center;}
+        .todo{ margin-top: 40px; width: 500px; height: auto;   background: rgba(255, 255, 255, 0.1);  border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
+        h1{color: white; text-align: center; font-size: 38px; margin-top: 20px;}
+        b{color: white; text-align: center; display: block;}
+        input[type='text']{border: none; background: none; margin-right: 63px;} 
+        input:focus{outline: none;}
+
+        form{border: 1px solid white; width: 245px; height: 28px; margin: auto; background-color: #fff; border-radius: 10px; position: relative; text-align: center;margin-top: 28px; margin-bottom: 27px;}
+
+        form:focus-within{outline: 2px solid rgb(22, 124, 201);}
+       .btn1{background-color:  rgb(14, 107, 219); border: none; color: white; padding: 6px; border-radius: 10px; position: absolute; top: -1px ;right: -1px; }
+       .btn1:focus{outline: none;}
+
+       .task{display: flex; justify-content: center;   background: rgba(255, 255, 255, 0.2);  padding: 5px; border-radius: 10px;  justify-content: space-between; position: relative;  color: white; width: 300px; margin:10px auto;}
+    
+       input[type='checkbox']{position: absolute; right: 37px; top: 11px; background-color:rgb(22, 124, 201) ;}
+
+       .information{color: white; text-align: center; margin-bottom: 40px;}
+       .btn2{margin: 20px auto; display: block; background-color: rgb(14, 107, 219); color: white; border: 1px solid  rgb(14, 107, 219) ;
+    padding: 10px 15px; font-size: 15px; border-radius: 10px; display: none;}
+    span{color: red;}
+ 
+
+
+    </style>
+</head>
+<body>
+
+    <div class="todo">
+        <h1>Todo List</h1>
+        <b></b>
+        <form >
+            <label ><input type="text" class="text" placeholder="Enter a task"  required></label><button class="btn1">Add Task</button>
+        </form>
+
+        <div class="todotask"></div>
+
+        
+
+        <div>
+            <button class="btn2">Click all</button>
+        </div>
+
+       
+        <p class="information">No task to display <br> Please add a new task to get started</p>
+    </div>
+
+    <script>
+        "use strict";
+        let time=new Date();
+
+        document.querySelector("b").innerHTML=`${time.toLocaleString()}`
+
+        let input=document.querySelector(".text");
+       
+
+        document.querySelector("form").addEventListener("submit", function(e){
+            e.preventDefault()
+            document.querySelector(".information").style.display='none'
+
+            document.querySelector(".btn2").style.display='block'
+            document.querySelector(".todotask").innerHTML+=`<div class="task">
+            <p>${input.value}</p>
+         
+           <div>
+            <input type="checkbox" >
+            <span class="fa fa-trash"></span>
+           </div>
+        
+
+
+        </div>`
+
+       
+
+        })
+
+      
+
+        document.querySelector(".todotask").addEventListener("click", function(e) {
+    if (e.target.classList.contains("fa-trash")) {
+        e.target.closest(".task").remove();
+
+        if (document.querySelectorAll(" .task").length === 0) {
+            document.querySelector("input").value=''
+            document.querySelector(".btn2").style.display = 'none';
+            document.querySelector(".information").style.display = 'block';
+        }
+    }
+});
+
+
+        document.querySelector(".btn2").addEventListener("click", function(){
+              document.querySelector("input").value=''
+            document.querySelector(".todotask").style.display='none'
+               document.querySelector(".information").style.display='block'
+                 document.querySelector(".btn2").style.display='none'
+        })
+    </script>
+    
+</body>
+</html>
