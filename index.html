@@ -22,7 +22,7 @@
        .btn1{background-color:  rgb(14, 107, 219); border: none; color: white; padding: 6px; border-radius: 10px; position: absolute; top: -1px ;right: -1px; }
        .btn1:focus{outline: none;}
 
-       .task{display: flex; justify-content: center;   background: rgba(255, 255, 255, 0.2);  padding: 5px; border-radius: 10px;  justify-content: space-between; position: relative;  color: white; width: 300px; margin:10px auto;}
+       .task{display: flex; justify-content: center;   background: rgba(255, 255, 255, 0.2);  padding: 5px; border-radius: 10px;  justify-content: space-between; position: relative;  color: white; width: 300px; margin:10px auto;  align-items: center;}
     
        input[type='checkbox']{position: absolute; right: 37px; top: 11px; background-color:rgb(22, 124, 201) ;}
 
@@ -30,6 +30,15 @@
        .btn2{margin: 20px auto; display: block; background-color: rgb(14, 107, 219); color: white; border: 1px solid  rgb(14, 107, 219) ;
     padding: 10px 15px; font-size: 15px; border-radius: 10px; display: none;}
     span{color: red;}
+   
+
+    @media screen and (max-width:460px) {
+
+        .task{padding: 10px;}
+        input[type='checkbox']{top: 17px;}
+
+    
+}
  
 
 
@@ -73,7 +82,7 @@
             document.querySelector(".todotask").innerHTML+=`<div class="task">
             <p>${input.value}</p>
          
-           <div>
+           <div >
             <input type="checkbox" >
             <span class="fa fa-trash"></span>
            </div>
